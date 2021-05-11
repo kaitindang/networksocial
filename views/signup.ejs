@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tạo tài khoản</title>
+    <link rel="stylesheet" type="text/css" href="/public/stylesheet/style.css" />
+    <link rel="icon" type="image/png" href="/public/image/logo icon/logo_icon.png" sizes="16x16">
+    <%- include('header') -%>
+</head>
+<body>
+    
+    <div class="header">
+        <div id="logo">
+            <img src="/public/image/logo icon/logotdt.png" alt="">
+            <a class="navbar-brand" href="/newfeed"><b>NETWORK SOCIAL TDTU</b></a>
+        </div>      
+    </div>
+
+    </div>
+    <div class="signup">
+        <h1>Tạo tài khoản phòng/khoa</h1>
+        <form action="/signup" method="POST">
+            <table id="signuptable">
+                <tr>
+                    <td><label for="username"> Tên đăng nhập:</label></td>
+                    <td><input type="text" id="emailadd" name="username" class="inputtext" name="username"
+                            required /></td>
+                </tr>
+                <hr></hr>
+                <tr>
+                    <td><label for="fullname">Tên phòng / khoa:</label></td>
+                    <td><select name="fullname" class="inputtext">
+                            <option value="Phòng Công tác học sinh sinh viên (CTHSSV)" selected="1"> Phòng Công tác học sinh sinh viên (CTHSSV)</option>
+                            <option value="Phòng Đại học">Phòng Đại học</option>
+                            <option value="Phòng Sau đại học">Phòng Sau đại học</option>
+                            <option value="Phòng điện toán và máy tính">Phòng điện toán và máy tính</option>
+                            <option value="Phòng khảo thí và kiểm định chất lượng">Phòng khảo thí và kiểm định chất lượng</option>
+                            <option value="Phòng tài chính">Phòng tài chính</option>
+                            <option value="TDT Creative Language Center">TDT Creative Language Center</option>
+                            <option value="Trung tâm tin học">Trung tâm tin học</option>
+                            <option value="Trung tâm đào tạo 4 phát triển xã hội (SDTC)">Trung tâm đào tạo 4 phát triển xã hội (SDTC)</option>
+                            <option value="Trung tâm phát triển Khoa học quản lý và Ứng dụng công nghệ (ATEM)">Trung tâm phát triển Khoa học quản lý và Ứng dụng công nghệ (ATEM)</option>
+                            <option value="Trung tâm hợp tác doanh nghiệp và cựu sinh viên">Trung tâm hợp tác doanh nghiệp và cựu sinh viên</option>
+                            <option value="Khoa Luật">Khoa Luật</option>
+                            <option value="Trung tâm ngoại ngữ - tin học – bồi dưỡng văn hóa">Trung tâm ngoại ngữ - tin học – bồi dưỡng văn hóa</option>
+                            <option value="Viện chính sách kinh tế và kinh doanh">Viện chính sách kinh tế và kinh doanh</option>
+                            <option value="Khoa Mỹ thuật công nghiệp">Khoa Mỹ thuật công nghiệp</option>
+                            <option value="Khoa Điện – Điện tử">Khoa Điện – Điện tử</option>
+                            <option value="Khoa Công nghệ thông tin">Khoa Công nghệ thông tin</option>
+                            <option value="Khoa Quản trị kinh doanh">Khoa Quản trị kinh doanh</option>
+                            <option value="Khoa Môi trường và bảo hộ lao động">Khoa Môi trường và bảo hộ lao động</option>
+                            <option value="Khoa Lao động công đoàn">Khoa Lao động công đoàn</option>
+                            <option value="Khoa Tài chính ngân hàng">Khoa Tài chính ngân hàng</option>
+                            <option value="Khoa giáo dục quốc tế">Khoa giáo dục quốc tế</option>
+                        </td>
+                </tr>
+                
+                <tr>
+                    <td><label for="password">Mật khẩu:</label></td>
+                    <td><input type="password" id="pwd" class="inputtext" name="password" required /></td>
+                </tr>
+                <tr>
+                    <td><label for="password2">Xác nhận mật khẩu:</label></td>
+                    <td><input type="password"  class="inputtext" name="password2" required /></td>
+                </tr>
+                
+                <tr>
+                    <td><label for="authorization">Cấp quyền:</label></td>
+                    <td>
+                        <div class="multiselect">
+                            <div class="selectBox" onclick="showCheckboxes()">
+                                <select class="inputtext">
+                                <option>Chọn phòng/khoa<option>
+                                </select>
+                                <div class="overSelect"></div>
+                            </div>
+                            <div id="checkboxes">
+                                <label for="one">
+                                    <input type="checkbox" id="one" name="authorization" value="Phòng Công tác học sinh sinh viên (CTHSSV)"/>
+                                    Phòng Công tác học sinh sinh viên (CTHSSV)</label>
+                                <label for="two">
+                                    <input type="checkbox" id="two" name="authorization" value="Phòng Đại học"/>
+                                    Phòng Đại học</label>
+                                <label for="three">
+                                    <input type="checkbox" id="three" name="authorization" value=" Phòng Sau đại học"/>
+                                    Phòng Sau đại học</label>
+                                <label for="one">
+                                    <input type="checkbox" id="one" name="authorization" value="Phòng điện toán và máy tính"/>
+                                    Phòng điện toán và máy tính</label>
+                                <label for="two">
+                                    <input type="checkbox" id="two" name="authorization" value="Phòng khảo thí và kiểm định chất lượng"/>
+                                    Phòng khảo thí và kiểm định chất lượng</label>
+                                <label for="three">
+                                    <input type="checkbox" id="three" name="authorization" value="Phòng tài chính"/>
+                                    Phòng tài chính</label>
+                                <label for="one">
+                                        <input type="checkbox" id="one" name="authorization" value="TDT Creative Language Center"/>
+                                    TDT Creative Language Center</label>
+                                <label for="two">
+                                    <input type="checkbox" id="two" name="authorization" value="Trung tâm tin học"/>
+                                    Trung tâm tin học</label>
+                                <label for="three">
+                                    <input type="checkbox" id="three" name="authorization" value="Trung tâm đào tạo 4 phát triển xã hội (SDTC)"/>
+                                    Trung tâm đào tạo 4 phát triển xã hội (SDTC)</label>
+                                    <label for="one">
+                                        <input type="checkbox" id="one" name="authorization" value="Trung tâm phát triển Khoa học quản lý và Ứng dụng công nghệ (ATEM)"/>
+                                    Trung tâm phát triển Khoa học quản lý và Ứng dụng công nghệ (ATEM)</label>
+                                <label for="two">
+                                    <input type="checkbox" id="two" name="authorization" value="Trung tâm hợp tác doanh nghiệp và cựu sinh viên"/>
+                                    Trung tâm hợp tác doanh nghiệp và cựu sinh viên</label>
+                                <label for="three">
+                                    <input type="checkbox" id="three" name="authorization" value="Khoa Luật"/>
+                                    Khoa Luật</label>
+                                <label for="one">
+                                    <input type="checkbox" id="one" name="authorization" value="Viện chính sách kinh tế và kinh doanh"/>
+                                    Viện chính sách kinh tế và kinh doanh</label>
+                                <label for="two">
+                                    <input type="checkbox" id="two" name="authorization" value="Trung tâm ngoại ngữ - tin học – bồi dưỡng văn hóa"/>
+                                    Trung tâm ngoại ngữ - tin học – bồi dưỡng văn hóa</label>
+                                <label for="three">
+                                    <input type="checkbox" id="three" name="authorization" value="Khoa Mỹ thuật công nghiệp"/>
+                                    Khoa Mỹ thuật công nghiệp</label>
+                                <label for="one">
+                                    <input type="checkbox" id="one" name="authorization" value="Khoa Điện – Điện tử"/>
+                                    Khoa Điện – Điện tử</label>
+                                <label for="two">
+                                    <input type="checkbox" id="two" name="authorization" value="Khoa Công nghệ thông tin"/>
+                                    Khoa Công nghệ thông tin</label>
+                                <label for="three">
+                                    <input type="checkbox" id="three" name="authorization" value="Khoa Quản trị kinh doanh"/>
+                                    Khoa Quản trị kinh doanh</label>
+                                <label for="one">
+                                    <input type="checkbox" id="one" name="authorization" value="Khoa Môi trường và bảo hộ lao động"/>
+                                    Khoa Môi trường và bảo hộ lao động</label>
+                                <label for="two">
+                                    <input type="checkbox" id="two" name="authorization" value="Khoa Lao động công đoàn"/>
+                                    Khoa Lao động công đoàn</label>
+                                <label for="three">
+                                    <input type="checkbox" id="three" name="authorization" value="Khoa Tài chính ngân hàng"/>
+                                    Khoa Tài chính ngân hàng</label>
+                                <label for="three">
+                                    <input type="checkbox" id="three" name="authorization" value="Khoa giáo dục quốc tế"/>
+                                    Khoa giáo dục quốc tế</label>
+                            </div>
+                            </div>
+
+                        <script src="public/javascript/main.js"></script>
+
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td colspan=2 ><input id="submitbtn" type="submit" value="Xác nhận"/></td>
+                </tr>
+
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="d-flex flex-row align-items-center back">
+                        <i class="fas fa-arrow-circle-left mr-1 mb-2"></i>
+                        <h6 style="text-align: center;"><a id="ava" href="/newfeed">Quay lại</a></h6>
+                    </div>
+                </div>
+ 
+                
+            </table>
+        </form>
+    </div>
+</body>
+</html>

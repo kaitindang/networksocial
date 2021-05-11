@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thông báo</title>
+    <link rel="icon" type="image/png" href="/public/image/logo icon/logo_icon.png" sizes="16x16">
+    <%- include('header') -%>
+</head>
+<body>
+    <%- include('navbar') -%>
+    <div class="container-fluid gedf-wrapper">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card border border-primary" id="left-creen">
+                    <div class="card-body">
+                        <div class="h5">
+                            Xem thông báo theo phòng/khoa
+                        </div>
+         
+                        <a href="/profile/phongdaihoc">Phòng Đại học</a><br>
+                        <a href="/profile/CTHSSV">Phòng Công tác học sinh sinh viên</a><br>
+                        <a href="/profile/phongsaudaihoc">Phòng Sau đại học</a><br>
+                        <a href="/profile/phongdientoanmaytinh">Phòng điện toán và máy tính</a><br>
+                        <a href="/profile/phongtaichinh">Phòng tài chính</a><br>
+                        <a href="/profile/tdtCLC">TDT Creative Language Center</a><br>
+                        <a href="/profile/trungtamtinhoc">Trung tâm tin học</a><br>
+                        <a href="/profile/SDTC">Trung tâm đào tạo 4 phát triển xã hội (SDTC)</a><br>
+                        <a href="/profile/khoaluat">Khoa Luật</a><br>
+                        <a href="/profile/khoadiendientu">Khoa Điện – Điện tử</a><br>
+                        <a href="/profile/khoacntt">Khoa Công nghệ thông tin</a><br>
+                        <a href="/profile/khoaqtkd">Khoa Quản trị kinh doanh</a><br>
+                        <a href="/profile/khoataichinhnganhang">Khoa Tài chính ngân hàng</a><br>
+                        
+                    </div>                       
+                    
+                </div>
+            </div>
+            <div class="col-md-9 gedf-main">
+                <h2 class="text-center"><b>Tất cả thông báo</b></h2>
+                <!--all posts -->
+                <% if(posts.length> 0) {
+                    posts.forEach(post => { %>
+                        <div class="list-group">
+                            <a href="/post/<%=post._id%>" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1 text-info"><%=post.title%></h5>
+                                <small>
+                                    <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o">
+                                        <%=post.date.day%>/<%=post.date.month%>/<%=post.date.year%>
+                                        <%=post.date.time_hours%>:<%=post.date.time_minutes%>
+                                        </i>
+                                    </div>
+                                </small>
+                            </div>
+                            <p class="mb-1"><%=post.description%></p>
+                            <small>[<%=post.fullname%>]</small>
+                            </a>                           
+                        </div>
+                    <% }); 
+                } %>
+            </div>
+        </div>
+    </div>      
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chỉnh sửa thông tin</title>
+    <link rel="icon" type="image/png" href="/public/image/logo icon/logo_icon.png" sizes="16x16">
+    <%- include('header') -%>
+</head>
+<body>
+    <%- include('navbar') -%>
+    <div class="container rounded bg-white mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="d-flex flex-row align-items-center back">
+                <i class="fas fa-arrow-circle-left mr-1 mb-2"></i>
+                <h6><a id="ava" href="/profile/<%=user.name%>">Quay lại trang cá nhân</a></h6>
+            </div>
+        </div>
+        <div class="row">        
+            <div class="col-md-12">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    <h1><b>Chỉnh sửa thông tin</b></h1>
+                    <img class="rounded-circle mt-5" src="/public/image/avatar/<%=user.avatar%>" width="90" height="90">                   
+                    <span class="font-weight-bold">
+                        <%=user.fullname%>
+                    </span>
+                    <% if(user.role == '1') {%>
+                        <span class="text-black-50">
+                            Admin
+                        </span>
+                    <% }%>
+                    <% if(user.role == '2') {%>
+                        <span class="text-black-50">
+                            Phòng/khoa
+                        </span>
+                    <% }%>
+                    <% if(user.role == '3') {%>
+                        <span class="text-black-50">
+                            Sinh viên
+                        </span>
+                    <% }%>
+
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="p-3 py-5">
+                    
+                    <form id="file_ul" action="/editprofile" method="POST" enctype="multipart/form-data">
+                        <div class="custom-file mb-3">
+                            <input type="file" class="custom-file-input" id="customFile" name="avatar">
+                            <label id="custom-file-label" class="custom-file-label" for="customFile">Chọn một ảnh đại diện mới</label>
+                        </div>
+                        <div>
+                            <% if (user.role=='1') {%>
+                                <div class="mb-3">
+                                    <label for="fullname">Tên</label>
+                                    <input type="text" class="form-control" placeholder="Tên đầy đủ"
+                                        name="fullname" value="<%=user.fullname%>">
+                                </div>
+                            <%}%>
+                            <% if (user.role=='2') {%>
+                                <div class="mb-3">
+                                    <label for="fullname">Tên phòng khoa</label>
+                                    <input type="text" class="form-control" placeholder="Tên đầy đủ"
+                                        name="fullname" value="<%=user.fullname%>">
+                                </div>
+                            <%}%>
+                            
+                            <% if (user.role=='3') {%>
+                            <div class="mb-3">
+                                <label for="fullname">Họ tên</label>
+                                <input type="text" class="form-control" placeholder="Tên đầy đủ"
+                                    name="fullname" value="<%=user.fullname%>">
+                            </div>
+                            <div class="mb-3">
+                                <label for="idstudent">Mã sinh viên</label>
+                                <input type="text" class="form-control" placeholder="MSSV"
+                                    name="idstudent" value="<%=user.idstudent%>">
+                            </div>
+                            <div>
+                                <label for="faculty">Khoa</label>
+                                <input type="text" class="form-control" placeholder="Khoa"
+                                    name="faculty" value="<%=user.faculty%>">
+                            </div>
+                            <% }%>                                                    
+                            <div>
+                                    <label for="password">Mật khẩu</label>
+                                    <input type="text" class="form-control" placeholder="Khoa"
+                                        name="password" value="<%=user.password%>">
+                            </div>                            
+                        </div>
+                        
+                        <div class="mt-5 text-right"><button class="btn btn-primary profile-button" type="submit">Lưu thay đổi</button></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

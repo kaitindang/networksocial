@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Trang chủ</title>
+    <link rel="stylesheet" type="text/css" href="/public/stylesheet/style.css">
+    <%- include('header') -%>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io();
+        </script>
+</head>
+
+<body>
+    <%- include('navbar') -%>
+        <div class="container-fluid gedf-wrapper">
+            <div class="row">
+                <!--Left screen-->
+                <div class="col-md-3">
+                    <div class="card border border-primary" id="left-creen">
+                        <div class="card-body">
+                            <div class="h5">
+                                <%=userSession.fullname%>
+                            </div>
+                            <% if(userSession.role=='1' ) {%>
+                                <div class="h7 text-muted">Cấp bậc : Admin</div>
+
+                            <%}%>
+                            <% if(userSession.role=='2' ) {%>
+                                <div class="h7 text-muted">Cấp bậc : Phòng/khoa</div>
+                            <%}%>
+                            <% if(userSession.role=='3' ) {%>
+                                <div class="h7 text-muted">Cấp bậc : Sinh viên</div>
+                            <%}%>                           
+                                <a href="/Profile/<%=userSession.name%>">Xem thêm</a>
+
+                        </div>                       
+                        <% if(userSession.role=='2') {%>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="h6">Chuyên mục quản lý</div>
+                                    <div class="h7">
+                                        <% userSession.authorization.forEach(au=> {%>
+                                            <%=au%><br>
+                                                <%})%>
+                                    </div>
+                                </li>
+    
+                            </ul>
+                        <%}%>
+                        
+                    </div>
+                    <div class="card" id="calender">
+                        <div class="card gedf-card">
+                            <table class="table-condensed table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th colspan="7">
+                                            <span class="btn-group">
+                                                <a class="btn"><i class="icon-chevron-left"></i></a>
+                                                <a class="btn active">May 2021</a>
+                                                <a class="btn"><i class="icon-chevron-right"></i></a>
+                                            </span>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>Sun</th>
+                                        <th>Mon</th>
+                                        <th>Tue</th>
+                                        <th>Wed</th>
+                                        <th>Thu</th>
+                                        <th>Fri</th>
+                                        <th>Sat</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td id="1">1</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="2">2</td>
+                                        <td id="3">3</td>
+                                        <td id="4">4</td>
+                                        <td id="5">5</td>
+                                        <td id="6">6</td>
+                                        <td id="7">7</td>
+                                        <td id="8">8</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="9">9</td>
+                                        <td id="10">10</td>
+                                        <td id="11">11</td>
+                                        <td id="12">12</td>
+                                        <td id="13">13</td>
+                                        <td id="14">14</td>
+                                        <td id="15">15</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="16">16</td>
+                                        <td id="17">17</td>
+                                        <td id="18">18</td>
+                                        <td id="19">19</td>
+                                        <td id="20">20</td>
+                                        <td id="21">21</td>
+                                        <td id="22">22</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="23">23</td>
+                                        <td id="24">24</td>
+                                        <td id="25">25</td>
+                                        <td id="26">26</td>
+                                        <td id="27">27</td>
+                                        <td id="28">28</td>
+                                        <td id="29">29</td>
+                                    </tr>
+                                    <tr>
+                                        <td id="30">30</td>
+                                        <td id="31">31</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+
+                                    <script src="/public/javascript/main.js">
+
+                                    </script>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                
+                <!--Mid screen-->
+                <div class="col-md-6 gedf-main">
+                    <!-- create post-->
+                    <form action="/createpost" method="POST" enctype="multipart/form-data">
+                        <div class="card gedf-card" id="mid-creen">
+                            <div class="card-header">
+                                <ul class="nav nav-tabs card-header-tabs">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="tab" aria-controls="posts"
+                                            aria-selected="true">
+                                            <img class="rounded-circle"
+                                                src="/public/image/avatar/<%=userSession.avatar%>">
+                                            <b>
+                                                <%=userSession.fullname%>
+                                            </b>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active">
+                                        <div class="form-group">
+                                            <%if(userSession.role=='3' ) {%>
+                                                <label class="sr-only" for="message">post</label>
+                                                <textarea class="form-control" id="message" rows="3"
+                                                    placeholder="Nhập nội dung..." name="description"></textarea>
+                                            <%}else {%>
+                                                    <input type="text" class="form-control mb-3" name="title"
+                                                        placeholder="Nhập chủ đề..." aria-label="Username"
+                                                        aria-describedby="basic-addon1" required>
+                                                    <label class="sr-only" for="message">post</label>
+                                                    <textarea class="form-control mb-3" id="message" rows="3"
+                                                        placeholder="Nhập nội dung thông báo..."
+                                                        name="description" required></textarea>
+                                            <%}%>
+                                                        <b>Chọn chuyên mục:</b><br>
+                                                <% userSession.authorization.forEach(au=> {%>
+                                                <input type="checkbox" name="type">
+                                                <%=au%><br>
+                                            <%})%>
+
+                                        </div>
+
+                                        <div class="custom-file">
+
+
+                                            <label class="form-label" for="customFile"><b>Chọn file ảnh,
+                                                    video:</b></label>
+                                            <input type="file" class="form-control" id="customFile" name="file_image" />
+                                        </div>
+                                        <div class="py-4"></div>
+
+
+                                    </div>
+
+                                </div>
+                                <div class="btn-toolbar justify-content-between">
+                                    <div class="btn-group">
+                                        <button type="submit" class="btn btn-primary">Đăng bài</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                    <!-- end create post -->
+                    <!--all posts -->
+                    <% if(posts.length> 0) {
+                        posts.forEach(post => { %>
+                        <form id="<%=post._id%>">
+                            <div class="card gedf-card " id="card_full">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="mr-2">
+                                                <img class="rounded-circle" src="/public/image/avatar/<%=post.avatar%>"
+                                                    alt="">
+                                            </div>
+                                            <div class="ml-2">
+                                                <div class="h5 m-0"><a href="/profile/<%=post.username%>">
+                                                        <%=post.fullname%>
+                                                    </a>
+                                                </div>
+                                                <div class="h7 text-muted"><%=post.fullname%></div>
+                                            </div>
+                                        </div>
+                                        <%if(userSession.name==post.username) {%>
+                                        <div>
+                                            <div class="dropdown">
+                                                <button class="btn btn-link dropdown-toggle" type="button"
+                                                    id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    <i class="fa fa-ellipsis-h"></i>
+                                                </button>
+                                                
+                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">                                                   
+                                                        <a class="dropdown-item" href="/deletepost/<%=post._id%>"><i class="fas fa-trash"></i> Xóa</a>
+                                                        <a class="dropdown-item" href="/editpost/<%=post._id%>"><i class="fas fa-cog"></i> Chỉnh sửa</a>                                                                                             
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <%}%>
+                                    </div>
+
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o">
+                                        <%=post.date.day%>/<%=post.date.month%>/<%=post.date.year%>
+                                        <%=post.date.time_hours%>:<%=post.date.time_minutes%>
+                                        </i>
+                                    </div>
+                                    <a class="card-link" id="descPost" href="/post/<%= post._id %>">
+                                        <%if(post.title!=null) {%>
+                                            <h5><b>[Thông báo] <%=post.title%></b></h5>
+                                        <%}
+                                        else{%>
+                                            <h5><%=post.title%></h5>
+                                        <%}%>
+                                        
+                                        <p class="card-text">
+                                            <%=post.description%>
+                                        </p>
+                                        <% if(post.image!="" ) { %>
+                                            <img src="/public/image/<%= post.image %>">
+                                            <% } %>
+                                    </a>
+
+                                    <br>
+
+                                    <div class="timeline-likes">
+                                        <div class="stats-right">
+                                            <% if(post.comment.length>0){ %>
+                                                <span class="stats-text" id="commentcount">
+                                                    <%=post.comment.length%> bình luận
+                                                </span>
+                                                <% }else{ %>
+                                                    <span class="stats-text" id="commentcount"></span>
+                                                    <%} %>
+                                        </div>
+                                        <div class="stats">
+                                            <span class="fa-stack fa-fw stats-icon">
+                                                <i class="fas fa-thumbs-up text-primary"></i>
+                                            </span>
+                                            <span class="stats-text" id="likeCount-<%=post._id%>">
+                                                <%=post.like.length%> lượt thích
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-sm-3 text-right">
+                                            <label for="like-<%=post._id%>">
+                                                <% if(post.like.includes(userSession.name)==true){ %>
+                                                    <a href="/post/<%=post._id%>" class="card-link"></a>
+                                                    <i class="far fa-thumbs-up text-primary" id="Like-<%=post._id%>"
+                                                        class="card-link"> Thích</i>
+                                                    </a>
+
+                                                    <% }else{ %>
+                                                        <a href="/post/<%=post._id%>" class="card-link">
+                                                            <i class="far fa-thumbs-up" id="Like-<%=post._id%>"> Thích</i>
+                                                        </a>
+                                                        <% } %>
+                                            </label>
+                                            <button id="like-<%=post._id%>" class="like_count" style="display: none;"
+                                                type="button"></button>
+                                        </div>
+                                        
+                                        <div class="col-sm-6 text-right">
+                                            <a href="/post/<%=post._id%>" class="card-link"><i
+                                                    class="far fa-comment"></i> Bình luận</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <% }); } %>
+                </div>
+                <!--Right screen-->
+                <div class="col-md-3">
+                    <div id="right-creen">
+                        <!-- Card 1-->                       
+                        <div class="card gedf-card border border-primary" id="notification">
+                            <div class="card-header">
+                                <span>Thông báo</span><img src="/public/new.jpg">                              
+                            </div>                           
+                            <% if(posts.length> 0) {
+                                posts.slice(0, 7).forEach(post => { %>
+                                    <div class="list-group">
+                                                               
+                                    
+                                    <a class="list-group-item list-group-item-action list-group-item-light" href="/post/<%=post._id%>">
+                                        <div class="text-muted h7"> [<%=post.fullname%>] <i class="fa fa-clock-o">                                      
+                                            <%=post.date.day%>/<%=post.date.month%>/<%=post.date.year%>
+                                            <%=post.date.time_hours%>:<%=post.date.time_minutes%>                                     
+                                            </i>
+                                        </div>
+                                        <b class="text-info"><%=post.title%></b>
+                                    </a>
+                                </div>                               
+                                <%}); }%>  
+                                <div class="card-body">
+                                    <a href="/listnotification">Xem tất cả</a>
+                                </div>                                                                   
+                        </div>
+                        <!--End Card 1-->
+                        
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+</body>
+
+</html>

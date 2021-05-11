@@ -1,0 +1,290 @@
+/*========NAVBAR CSS ===========*/
+#navbar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+#navbar img{
+    width:100px;
+    height:45px;
+}
+
+/*========login CSS ===========*/
+
+#logologin {
+    width: 100px;
+    height: 45px;
+}
+
+.login-form
+{
+    margin-top: 150px;
+}
+
+.login-form .row
+{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/*========SIGNUP CSS ===========*/
+
+body{
+	height: 100%;
+	width: 100%;
+	margin:0px;
+	padding:0px;
+	font-family: Helvetica, Arial, sans-serif;
+	resize: both;
+    overflow: auto;
+}
+
+.header
+{
+	background-color: #e8eef4;
+	overflow: hidden;
+	height: 90px;	
+}
+
+#logo{
+	margin-top: 26px;
+	margin-left: 11%;
+	float: left;
+	width: auto;
+	height: 270px;
+}
+
+.header #logo img {
+    width: 100px ;
+    height: 45px;
+}
+
+.signup
+{    
+   margin: auto;
+}
+
+.signup h1
+{
+	font-size: 45px;
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.signup .inputtext
+{
+	width: 300px;
+	height: 35px;
+	font-size: 18px;
+	border-radius: 5px;
+	border: 1px solid #bdc7d8;
+	padding-left: 8px 10px;
+}
+
+#signuptable {
+	margin-left: auto;
+  	margin-right: auto;
+}
+
+#signuptable tr td
+{
+	padding-bottom: 10px;
+	padding-right: 10px;
+	
+}
+
+#submitbtn
+{   
+	float: left;
+    text-align: center;
+	background-color: #3d9cbe;
+	color:white;
+	cursor: pointer;
+	border:0px;
+	width: 100%;
+	height: 35px;
+	font-size: 18px;
+	margin-top: 30px;
+}
+
+#submitbtn:hover
+{
+	background-color: #3a6397;
+}
+
+#submitbtn:active
+{
+  background-color: #2196F3;
+  transform: translateY(8px);
+}
+  
+.selectBox {
+	position: relative;
+}
+  
+.overSelect {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+  
+#checkboxes {
+	display: none;
+	border: 1px #dadada solid;
+}
+  
+#checkboxes label {
+	display: block;
+}
+  
+#checkboxes label:hover {
+	background-color: #1e90ff;
+}
+
+/*========NEWFEED CSS ===========*/
+#left-creen{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    top: 70px;
+}
+
+#mid-creen img{
+    width: 7%;
+}
+
+.comment_frame{
+    height: 110px;
+    overflow-y: auto;
+}
+
+#card_full{
+    margin-bottom: 55px;
+}
+
+#card_full img {
+    width:45px;
+    height:45px;
+}
+
+#descPost{
+    color: black;
+    font-size: 25px;
+}
+
+#descPost img{
+    height: 100%;
+    width: 100%; 
+    top: 0;
+    left: 0;
+    margin-bottom: 20px;
+}
+
+.timeline-likes {
+    color: #6d767f;
+    font-weight: 600;
+    font-size: 15px; 
+    border-width: 2px;
+}
+.timeline-likes .stats-right {
+    float: right
+}
+
+.timeline-likes .stats-icon {
+    float: left;
+    margin-right: 5px;
+    font-size: 13px
+}
+
+.timeline-likes .stats-icon+.stats-icon {
+    margin-left: -2px
+}
+
+.timeline-likes .stats-text {
+    line-height: 25px
+}
+
+.timeline-likes .stats-text+.stats-text {
+    margin-left: 15px
+}
+
+ .h7 {
+        font-size: 0.8rem;
+    }
+
+    .gedf-wrapper {
+        margin-top: 0.97rem;
+    }
+
+    @media (min-width: 992px) {
+        .gedf-main {
+            padding-left: 4rem;
+            padding-right: 4rem;
+        }
+        .gedf-card {
+            margin-bottom: 2.77rem;
+        }
+    }
+
+    
+    .dropdown-toggle::after {
+        content: none;
+        display: none;
+    }
+
+#right-creen{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+
+#notification {
+    height: 650px;
+    
+}
+
+#notification .card-header{
+    background-color: #f2f2f2;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#notification img {
+    width: 40px;
+}
+
+#calender {
+    text-align: center;
+    
+}
+
+#right-creen{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 70px;
+}
+
+/*========PROFILE CSS ===========*/
+      
+.profile-img img{
+    width:205px;
+    height:205px;
+    border-radius: 10px; 
+    border-color: #7a7878;
+    border-style: solid;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+#comment-post {
+    border-radius: 12px; 
+    border: 2px solid #e6e7e9; 
+    background-color: #F2F3F5; 
+    padding: 1px 8px 1px 8px; 
+    margin-left: 5px;
+}

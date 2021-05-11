@@ -1,0 +1,54 @@
+<script>
+    //event like
+    document.getElementById("like-<%=post._id%>").addEventListener("click", () => {
+        if(document.getElementById("Like-<%=post._id%>").style.color!="#007bff"){
+           document.getElementById("likeCount-<%=post._id%>").innerHTML = `<%=post.like.length%>`;
+         }
+        document.getElementById("Like-<%=post._id%>").style.color = "#007bff";
+        socket.emit("like_post", {
+            id: "<%=post._id%>",
+            userSession: "<%=userSession.name%>"
+
+        });
+    })
+    socket.on("server_send_likecount_<%=post._id%>", (data) => {
+        console.log(data.likecount)
+        document.getElementById("likeCount-<%=post._id%>").innerHTML = `${data.likecount}`;
+    })
+
+
+    const inputComment = document.getElementById('commentInput');
+    const form = document.getElementById("commentForm");
+    var commentFrame = document.getElementById("commentFrame")
+
+    // event comment
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        var inputcomment = inputComment.value;
+        socket.emit("clientSend", {
+            commentUser: "<%=userSession.name%>",
+            commentUsername: "<%=userSession.fullname%>",
+            idpost: "<%=post._id%>",
+            message: `${inputcomment}`,
+            
+        });
+        inputComment.value = "";
+    });
+
+    socket.on("serverSend", (data) => {
+        var param = document.createElement("p");
+        param.innerHTML = 
+        `<div class="d-flex flex-row align-items-start" style="font-size: 18px;">
+            <img class="rounded-circle" src="/public/image/avatar/${data.avatarComment}" width="32" height="32">
+                <div style="border-radius: 12px; border: 2px solid #e6e7e9; padding: 1px 7px 1px 7px; margin-left: 6px;">
+                    <a href="/profile/${data.commentUser}" style="font-size: 18px;">${data.commentUsername}</a>
+                <br>
+                ${data.comment}
+                </div>
+            
+        </div>`
+        document.getElementById("commentFrame").appendChild(param);
+        document.getElementById("commentcount").innerHTML = `${data.commentcount} Bình luận`;
+    })
+   
+</script>

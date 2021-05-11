@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Trang cá nhân</title>
+   <link rel="stylesheet" type="text/css" href="/public/stylesheet/style.css">
+   <%- include('header') -%>
+      <script>
+
+      </script>
+</head>
+
+<body>
+   <%- include('navbar') -%>
+      <!--body-->
+      <div class="container">
+         <div class="row">
+            <div class="col-md-12">
+               <div id="content" class="content content-full-width">
+                  <div class="profile text-center">
+                        <div class="profile-img">
+                           <img class="rounded-circle " src="/public/image/avatar/<%=userProfile.avatar%>">
+                        </div>
+                     <div class="name">
+                        <h3 class="m-t-10 m-b-5">
+                           <%=userProfile.fullname%>
+                        </h3>
+                        <% if(userProfile.role=='1' ) {%>
+                           <p class="m-b-10">
+                              Admin
+                           </p>
+                           <% }%>
+                        <% if(userProfile.role=='2' ) {%>
+                           <p class="m-b-10">
+                              Phòng/khoa
+                           </p>
+                        <% }%>
+                        <% if(userProfile.role=='3' ) {%>
+                           <p class="m-b-10">
+                              Sinh viên
+                           </p>
+                        <% }%>
+                     </div>
+                  </div>
+                  <hr></hr>
+                  
+                  <div class="container-fluid gedf-wrapper">
+                     <div class="row">
+                        <!--Left screen-->
+                        <%if(userSession.name==userProfile.name) {%>
+                           <div class="col-md-4">
+                              <div class="card border border-primary" id="left-creen">
+                                 <div class="card-body">
+                                    <h4>Thông tin tài khoản</h4>
+                                    <div class="h5">
+                                       <%=userSession.fullname%>
+                                    </div>
+                                    <% if(userSession.role=='1' ) {%>
+                                       <div class="h7 text-muted">Cấp bậc : Admin</div>
+   
+                                    <%}%>
+                                    <% if(userSession.role=='2' ) {%>
+                                       <div class="h7 text-muted">Cấp bậc : Phòng/khoa</div>
+                                    <%}%>
+                                    <% if(userSession.role=='3' ) {%>
+                                       <div class="h7 text-muted">Cấp bậc : Sinh viên</div>
+                                       <div class="h7 text-muted">Mã sinh viên : <%=userSession.idstudent%></div>
+                                    <%}%>
+                                    <% if (userSession.name==userProfile.name) {%>
+                                       <a href="/editProfile">Chỉnh sửa thông tin</a>
+                                    <%}%>
+                                 </div>
+                                 <% if (userSession.role=='2') {%>
+                                 <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                       <div class="h6">Chuyên mục quản lý:</div>
+                                       <div class="h7">
+                                          <% userSession.authorization.forEach(au=> {%>
+                                             <%=au%><br>
+                                          <%})%>
+                                       </div>
+                                    </li>
+   
+                                 </ul>
+                                 <%}%>
+                              </div>
+                           </div>
+                        <%}
+                        else {%>
+                           <div class="col-md-4">
+                              <div class="card border border-primary" id="left-creen">
+                                 <div class="card-body">
+                                    <div class="h5">
+                                       <%=userProfile.fullname%>
+                                    </div>
+                                    <% if(userProfile.role=='1' ) {%>
+                                       <div class="h7 text-muted">Cấp bậc : Admin</div>
+   
+                                    <%}%>
+                                    <% if(userProfile.role=='2' ) {%>
+                                       <div class="h7 text-muted">Cấp bậc : Phòng/khoa</div>
+                                    <%}%>
+                                    <% if(userProfile.role=='3' ) {%>
+                                       <div class="h7 text-muted">Cấp bậc : Sinh viên</div>
+                                       <div class="h7 text-muted">Mã sinh viên : <%=userProfile.idstudent%></div>
+                                    <%}%>
+                                    <% if (userSession.name==userProfile.name) {%>
+                                       <a href="/editProfile">Chỉnh sửa thông tin</a>
+                                    <%}%>
+                                 </div>
+                                 <% if (userProfile.role=='2') {%>
+                                 <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                       <div class="h6">Chuyên mục quản lý:</div>
+                                       <div class="h7">
+                                          <% userProfile.authorization.forEach(au=> {%>
+                                             <%=au%><br>
+                                          <%})%>
+                                       </div>
+                                    </li>
+   
+                                 </ul>
+                                 <%}%>
+                              </div>
+                           </div>
+                        <%}
+                        %>
+                        
+                        <!--Mid screen-->
+                        <div class="col-md-8 gedf-main">
+                           <!--all posts -->
+                           <% if(posts.length> 0) {
+                              posts.forEach(post => { %>
+                              <form id="<%=post._id%>">
+                                 <div class="card gedf-card " id="card_full">
+                                    <div class="card-header">
+                                       <div class="d-flex justify-content-between align-items-center">
+                                          <div class="d-flex justify-content-between align-items-center">
+                                             <div class="mr-2">
+                                                <img class="rounded-circle" src="/public/image/avatar/<%=post.avatar%>"
+                                                   alt="">
+                                             </div>
+                                             <div class="ml-2">
+                                                <div class="h5 m-0"><a href="/profile/<%=post.username%>">
+                                                      <%=post.fullname%>
+                                                   </a>
+                                                </div>
+                                                <div class="h7 text-muted">Phòng/khoa</div>
+                                             </div>
+                                          </div>
+                                          <%if(userSession.name==post.username) {%>
+                                             <div>
+                                                 <div class="dropdown">
+                                                     <button class="btn btn-link dropdown-toggle" type="button"
+                                                         id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true"
+                                                         aria-expanded="false">
+                                                         <i class="fa fa-ellipsis-h"></i>
+                                                     </button>
+                                                     
+                                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">                                                   
+                                                             <a class="dropdown-item" href="/deletepost/<%=post._id%>"><i class="fas fa-trash"></i> Xóa</a>
+                                                             <a class="dropdown-item" href="/editpost/<%=post._id%>"><i class="fas fa-cog"></i> Chỉnh sửa</a>                                                                                             
+                                                     </div>
+                                                     
+                                                 </div>
+                                             </div>
+                                             <%}%>
+                                       </div>
+
+                                    </div>
+                                    <div class="card-body">
+                                       <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o">
+                                          <%=post.date.day%>/<%=post.date.month%>/<%=post.date.year%>
+                                          <%=post.date.time_hours%>:<%=post.date.time_minutes%>
+                                          </i>
+                                       </div>
+                                       <a class="card-link" id="descPost" href="/post/<%= post._id %>">
+                                          <h5>[Thông báo] <%=post.title%>
+                                          </h5>
+                                          <p class="card-text">
+                                             <%=post.description%>
+                                          </p>
+                                          <% if(post.image!="" ) { %>
+                                             <img src="/public/image/<%= post.image %>">
+                                             <% } %>
+                                       </a>
+
+                                       <br>
+
+                                       <div class="timeline-likes">
+                                          <div class="stats-right">
+                                             <% if(post.comment.length>0){ %>
+                                                <span class="stats-text" id="commentcount">
+                                                   <%=post.comment.length%> bình luận
+                                                </span>
+                                                <% }else{ %>
+                                                   <span class="stats-text" id="commentcount"></span>
+                                                   <%} %>
+                                          </div>
+                                          <div class="stats">
+                                             <span class="fa-stack fa-fw stats-icon">
+                                                <i class="fas fa-thumbs-up text-primary"></i>
+                                             </span>
+                                             <span class="stats-text" id="likeCount-<%=post._id%>">
+                                                <%=post.like.length%> lượt thích
+                                             </span>
+                                          </div>
+                                       </div>
+
+                                    </div>
+                                    <div class="card-footer">
+                                       <div class="row">
+                                          <div class="col-sm-3 text-right">
+                                             <label for="like-<%=post._id%>">
+                                                <% if(post.like.includes(userSession.name)==true){ %>
+                                                   <i class="far fa-thumbs-up text-primary" id="Like-<%=post._id%>"
+                                                      class="card-link"> Thích</i>
+
+                                                   <% }else{ %>
+                                                      <i class="far fa-thumbs-up" id="Like-<%=post._id%>"> Thích</i>
+                                                      <% } %>
+                                             </label>
+                                             <button id="like-<%=post._id%>" class="like_count" style="display: none;"
+                                                type="button"></button>
+                                          </div>
+                                          <script>
+                                             var count = 0;
+
+                                             document.getElementById("like-<%=post._id%>").addEventListener("click", () => {
+                                                if (document.getElementById("Like-<%=post._id%>").style.color != "blue") {
+                                                   document.getElementById("likeCount-<%=post._id%>").innerHTML = `<%=post.like.length%>`;
+                                                }
+                                                document.getElementById("Like-<%=post._id%>").style.color = "blue";
+                                                socket.emit("like_post", {
+                                                   id: "<%=post._id%>",
+                                                   userSession: "<%=userSession.name%>"
+
+                                                });
+
+                                             })
+                                             socket.on("server_send_likecount_<%=post._id%>", (data) => {
+                                                document.getElementById("likeCount-<%=post._id%>").innerHTML = `${data.likecount}`;
+                                             })
+                                          </script>
+                                          <div class="col-sm-6 text-right">
+                                             <a href="/post/<%=post._id%>" class="card-link"><i
+                                                     class="far fa-comment"></i> Bình luận</a>
+                                         </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </form>
+
+                              <% }); 
+                           } 
+                           else{%>
+                              <div class="timeline-body text-center">
+                                 Chưa có bài đăng nào
+                              </div>
+                           <%}%>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+</body>
+
+</html>
