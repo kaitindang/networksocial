@@ -23,7 +23,7 @@
                                 <%=userSession.fullname%>
                             </div>
                             <% if(userSession.role=='1' ) {%>
-                                <div class="h7 text-muted">Cấp bậc : Admin</div>
+                                <div class="h7 text-muted"><b>Cấp bậc : Admin</b></div>
 
                             <%}%>
                             <% if(userSession.role=='2' ) {%>
@@ -31,8 +31,18 @@
                             <%}%>
                             <% if(userSession.role=='3' ) {%>
                                 <div class="h7 text-muted">Cấp bậc : Sinh viên</div>
-                            <%}%>                           
-                                <a href="/Profile/<%=userSession.name%>">Xem thêm</a>
+                            <%}%>
+                            <div>
+                                <b><a class="nav-link" href="/newfeed"><i class="fas fa-home ml-10"></i> Trang chủ</a></b>
+                                <b><a class="nav-link" href="/profile/<%=userSession.name%>"><i class="fas fa-user"></i> Cá nhân</a></b>
+                                <b><a class="nav-link" href="/listnotification"><i class="fas fa-bell"></i></i> Thông báo</a></b>   
+                                <%if(userSession.role=='1'){%>
+                                    <b><a class="nav-link" href="/signup"><i class="fas fa-user-plus"></i> Tạo tài khoản</a></b>
+                                <%}%>
+                                <b><a class="nav-link" href="/editProfile"><i class="fas fa-key"></i> Đổi mật khẩu</a></b>
+                                <b><a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i >Đăng xuất</a></b>
+                            </div>                           
+                                
 
                         </div>                       
                         <% if(userSession.role=='2') {%>
