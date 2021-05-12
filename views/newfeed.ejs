@@ -12,7 +12,16 @@
 </head>
 
 <body>
-    <%- include('navbar') -%>
+    <div class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
+        <img src="/public/image/logo icon/logotdt.png" alt="">
+        <a class="navbar-brand" href="/newfeed" ><b>NETWORK SOCIAL TDTU</b></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu"
+            aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        
+    </div>
         <div class="container-fluid gedf-wrapper">
             <div class="row">
                 <!--Left screen-->
@@ -20,7 +29,7 @@
                     <div class="card border border-primary" id="left-creen">
                         <div class="card-body">
                             <div class="h5">
-                                <%=userSession.fullname%>
+                                <a href="/profile/<%=userSession.name%>"><%=userSession.fullname%></a>
                             </div>
                             <% if(userSession.role=='1' ) {%>
                                 <div class="h7 text-muted"><b>Cấp bậc : Admin</b></div>
@@ -32,32 +41,25 @@
                             <% if(userSession.role=='3' ) {%>
                                 <div class="h7 text-muted">Cấp bậc : Sinh viên</div>
                             <%}%>
-                            <div>
-                                <b><a class="nav-link" href="/newfeed"><i class="fas fa-home ml-10"></i> Trang chủ</a></b>
-                                <b><a class="nav-link" href="/profile/<%=userSession.name%>"><i class="fas fa-user"></i> Cá nhân</a></b>
-                                <b><a class="nav-link" href="/listnotification"><i class="fas fa-bell"></i></i> Thông báo</a></b>   
-                                <%if(userSession.role=='1'){%>
-                                    <b><a class="nav-link" href="/signup"><i class="fas fa-user-plus"></i> Tạo tài khoản</a></b>
-                                <%}%>
-                                <b><a class="nav-link" href="/editProfile"><i class="fas fa-key"></i> Đổi mật khẩu</a></b>
-                                <b><a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i >Đăng xuất</a></b>
-                            </div>                           
-                                
+                            
 
                         </div>                       
-                        <% if(userSession.role=='2') {%>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">
-                                    <div class="h6">Chuyên mục quản lý</div>
-                                    <div class="h7">
-                                        <% userSession.authorization.forEach(au=> {%>
-                                            <%=au%><br>
-                                                <%})%>
-                                    </div>
-                                </li>
-    
-                            </ul>
-                        <%}%>
+
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="h6">MENU</div>
+                                <div class="h6">
+                                    <b><a href="/newfeed"><i class="fas fa-home ml-10"></i> Trang chủ</a></b><br><br>
+                                    <b><a href="/profile/<%=userSession.name%>"><i class="fas fa-user"></i> Cá nhân</a></b><br><br>
+                                    <b><a href="/listnotification"><i class="fas fa-bell"></i></i> Thông báo</a></b><br><br>
+                                    <%if(userSession.role=='1'){%>
+                                        <b><a href="/signup"><i class="fas fa-user-plus"></i> Tạo tài khoản</a></b><br><br>
+                                    <%}%>
+                                    <b><a href="/editProfile"><i class="fas fa-key"></i> Đổi mật khẩu</a></b><br><br>
+                                    <b><a href="/logout"><i class="fas fa-sign-out-alt"></i > Đăng xuất</a></b><br><br>
+                                </div>
+                            </li>  
+                        </ul>
                         
                     </div>
                     <div class="card" id="calender">

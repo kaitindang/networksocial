@@ -153,6 +153,10 @@ body{
     top: 70px;
 }
 
+#left-creen a {
+    text-decoration: none;
+}
+
 #mid-creen img{
     width: 7%;
 }
