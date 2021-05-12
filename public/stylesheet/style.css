@@ -188,57 +188,40 @@ body{
     margin-bottom: 20px;
 }
 
-.timeline-likes {
+.Interactive {
     color: #6d767f;
     font-weight: 600;
     font-size: 15px; 
     border-width: 2px;
 }
-.timeline-likes .stats-right {
+.Interactive .Interactive-comment {
     float: right
 }
 
-.timeline-likes .stats-icon {
+.Interactive .Interactive-like {
     float: left;
     margin-right: 5px;
+    
     font-size: 13px
 }
 
-.timeline-likes .stats-icon+.stats-icon {
+.Interactive .Interactive-like+.Interactive-like {
+    margin-top: 40px;
     margin-left: -2px
 }
 
-.timeline-likes .stats-text {
+.Interactive .stats-text {
     line-height: 25px
 }
 
-.timeline-likes .stats-text+.stats-text {
+.Interactive .stats-text+.stats-text {
     margin-left: 15px
 }
-
- .h7 {
-        font-size: 0.8rem;
-    }
-
-    .gedf-wrapper {
-        margin-top: 0.97rem;
-    }
-
-    @media (min-width: 992px) {
-        .gedf-main {
-            padding-left: 4rem;
-            padding-right: 4rem;
-        }
-        .gedf-card {
-            margin-bottom: 2.77rem;
-        }
-    }
-
     
-    .dropdown-toggle::after {
-        content: none;
-        display: none;
-    }
+.dropdown-toggle::after {
+    content: none;
+    display: none;
+}
 
 #right-creen{
     position: -webkit-sticky;
@@ -264,7 +247,6 @@ body{
 
 #calender {
     text-align: center;
-    
 }
 
 #right-creen{
@@ -273,7 +255,7 @@ body{
     top: 70px;
 }
 
-/*========PROFILE CSS ===========*/
+/*======== PROFILE CSS ===========*/
       
 .profile-img img{
     width:205px;
@@ -291,4 +273,12 @@ body{
     background-color: #F2F3F5; 
     padding: 1px 8px 1px 8px; 
     margin-left: 5px;
+}
+
+/*======== POST CSS ===========*/
+#commentForm input{
+    margin-bottom: 30px;
+    border: 2px solid rgb(87, 83, 83);
+    padding: 10px;
+    border-radius: 25px;
 }

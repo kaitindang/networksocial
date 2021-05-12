@@ -69,8 +69,8 @@
                                 <% } %>
                         </a>
                         <br>
-                        <div class="timeline-likes" style="margin-top: 20px;">
-                            <div class="stats-right">
+                        <div class="Interactive">
+                            <div class="Interactive-comment">
                                 <span class="stats-text"></span>
                                 <% if(post.comment.length>0){ %>
                                 <span class="stats-text" id="commentcount"><%=post.comment.length%> Bình luận</span>
@@ -79,11 +79,13 @@
                                 <%} %>
                             </div>
                             <div class="stats">
-                                <span class="fa-stack fa-fw stats-icon">
+                                <span class="fa-stack fa-fw Interactive-like">
                                     <i class="fas fa-thumbs-up text-primary"></i>
                                 </span>
                                 <span class="stats-text" id="likeCount-<%=post._id%>"><%=post.like.length%> lượt thích</span>
                             </div>
+
+                            
                         </div>
                     </div>
                     <div class="card-footer">
@@ -128,12 +130,13 @@
                          } %>
                         </div>
                     </div>
+                    
                     <form id="commentForm">
                         <div id="collapse-1" class="bg-light p-2 collapse show" data-parent="#myGroup">
                             <div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="/public/image/avatar/<%=userSession.avatar%>" width="35" height="35">
                                 <div class="input-group ">
                                     <input type="text" id="commentInput" class="form-control "
-                                        placeholder="Nhập bình luận...">
+                                        placeholder="Nhập bình luận..." autofocus>
                                     <span class="input-group-btn p-l-10">
                                         <button class="btn btn-primary f-s-12 " type="submit">Bình luận</button>
                                     </span>
@@ -142,6 +145,7 @@
                             </div>
                         </div>
                     </form>
+
                     <%- include('likecomment') -%>                         
                 </div>
             </div>
