@@ -205,11 +205,6 @@ body{
     font-size: 13px
 }
 
-.Interactive .Interactive-like+.Interactive-like {
-    margin-top: 40px;
-    margin-left: -2px
-}
-
 .Interactive .stats-text {
     line-height: 25px
 }
@@ -218,6 +213,10 @@ body{
     margin-left: 15px
 }
     
+.Interactive .Interactive-like+.Interactive-like {
+    margin-top: 40px;
+    margin-left: -2px
+}
 .dropdown-toggle::after {
     content: none;
     display: none;

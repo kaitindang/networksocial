@@ -287,11 +287,38 @@
                                         <%}%>
                                         
                                         <p class="card-text">
+
                                             <%=post.description%>
+
+                                            <%if(post.description.includes('https')) {
+                                                const words = post.description.split('/');
+                                                if(words[3].includes('watch?v=')) {
+                                                    words2 = words[3].split('watch?v=');%>
+                                                                                                   
+                                                    <iframe width="690" height="400" src="https://www.youtube.com/embed/<%=words2[0]%>" >
+                                                    </iframe>
+                                                <%}else{%>
+                                                    <iframe width="690" height="400" src="https://www.youtube.com/embed/<%=words[3]%>" >
+                                                    </iframe>
+                                                <%}
+                                                
+                                                
+                                                
+                                        }%>
+                                            
+
                                         </p>
-                                        <% if(post.image!="" ) { %>
-                                            <img src="/public/image/<%= post.image %>">
-                                            <% } %>
+                                        <% if(post.image!="" ) { 
+                                            if(post.image.includes('mp4')) {%>
+                                                <video controls  >
+                                                    <source src="/public/image/<%=post.image%>" >
+                                                </video>
+                                            <%}
+                                            else {%>
+                                                <img src="/public/image/<%= post.image %>">
+                                            <%}
+                                            
+                                        } %>
                                     </a>
 
                                     <br>
