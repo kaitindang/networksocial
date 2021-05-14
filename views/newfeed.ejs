@@ -8,7 +8,7 @@
         <script src="/socket.io/socket.io.js"></script>
         <script>
             var socket = io();
-        </script>
+        </script>       
 </head>
 
 <body>
@@ -249,7 +249,12 @@
                                                         <%=post.fullname%>
                                                     </a>
                                                 </div>
-                                                <div class="h7 text-muted"><%=post.fullname%></div>
+                                                    <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o">
+                                                        <%=post.date.day%>/<%=post.date.month%>/<%=post.date.year%>
+                                                        <%=post.date.time_hours%>:<%=post.date.time_minutes%>
+                                                        </i>
+                                                    </div>
+                                               
                                             </div>
                                         </div>
                                         <%if(userSession.name==post.username) {%>
@@ -273,11 +278,7 @@
 
                                 </div>
                                 <div class="card-body">
-                                    <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o">
-                                        <%=post.date.day%>/<%=post.date.month%>/<%=post.date.year%>
-                                        <%=post.date.time_hours%>:<%=post.date.time_minutes%>
-                                        </i>
-                                    </div>
+                                    
                                     <a class="card-link" id="descPost" href="/post/<%= post._id %>">
                                         <%if(post.title!=null) {%>
                                             <h5><b>[Thông báo] <%=post.title%></b></h5>
@@ -292,10 +293,10 @@
 
                                             <%if(post.description.includes('https')) {
                                                 const words = post.description.split('/');
+                                                
                                                 if(words[3].includes('watch?v=')) {
-                                                    words2 = words[3].split('watch?v=');%>
-                                                                                                   
-                                                    <iframe width="690" height="400" src="https://www.youtube.com/embed/<%=words2[0]%>" >
+                                                    words2 = words[3].split('watch?v=');%>                             
+                                                    <iframe width="690" height="400" src="https://www.youtube.com/embed/<%=words2[1]%>" >
                                                     </iframe>
                                                 <%}else{%>
                                                     <iframe width="690" height="400" src="https://www.youtube.com/embed/<%=words[3]%>" >
@@ -378,6 +379,7 @@
 
                         <% }); } %>
                 </div>
+                
                 <!--Right screen-->
                 <div class="col-md-3">
                     <div id="right-creen">

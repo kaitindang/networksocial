@@ -37,9 +37,15 @@
             <div class="col-md-9 gedf-main">
                 <h2 class="text-center"><b>Tất cả thông báo</b></h2>
                 <!--all posts -->
-                <% if(posts.length> 0) {
-                    posts.forEach(post => { %>
-                        <div class="list-group">
+                <% if(posts.length > 0) {
+                    i = 0
+                    count = 1
+                    pages = Math.round(posts.length/10)%>
+
+                    
+                    <%posts.forEach(post => {%>
+                        
+                        <div class="list-group collapse" id="a<%=count%>" >
                             <a href="/post/<%=post._id%>" class="list-group-item list-group-item-action flex-column align-items-start">
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1 text-info"><%=post.title%></h5>
@@ -55,9 +61,29 @@
                             <small>[<%=post.fullname%>]</small>
                             </a>                           
                         </div>
-                    <% }); 
-                } %>
+
+                    <% i++                  
+
+                        if(i == 10) {
+                            i = 0
+                            count ++
+                        }
+                        
+                    %>
+
+                    <%}); %>
+                    <ul class="pagination">
+                        
+                        
+                            <%for(var page = 1; page<=pages; page++){%>
+                                <li class="page-item"></li><a class="page-link" data-toggle="collapse" href="#a<%=page%>" role="button" aria-expanded="false" aria-controls="a<%=page%>"><%=page%></a></li>
+                            <%}%>
+                                              
+                        
+                    </ul>
+                <%} %>
             </div>
+            
         </div>
     </div>      
 </body>
