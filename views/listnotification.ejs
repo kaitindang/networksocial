@@ -41,11 +41,18 @@
                     i = 0
                     count = 1
                     pages = Math.round(posts.length/10)%>
-
+                    <ul class="pagination">
+                        
+                        
+                        <%for(var page = 1; page<=pages; page++){%>
+                            <li class="page-item "><a class="page-link" onclick="pagedisplay(<%=page%>);" id="#btn<%=page%>" ><%=page%></a></li>
+                        <%}%>
+                                          
                     
+                    </ul>
                     <%posts.forEach(post => {%>
                         
-                        <div class="list-group collapse" id="a<%=count%>" >
+                        <div class="list-group" id="a<%=count%>">
                             <a href="/post/<%=post._id%>" class="list-group-item list-group-item-action flex-column align-items-start">
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1 text-info"><%=post.title%></h5>
@@ -72,16 +79,11 @@
                     %>
 
                     <%}); %>
-                    <ul class="pagination">
-                        
-                        
-                            <%for(var page = 1; page<=pages; page++){%>
-                                <li class="page-item"></li><a class="page-link" data-toggle="collapse" href="#a<%=page%>" role="button" aria-expanded="false" aria-controls="a<%=page%>"><%=page%></a></li>
-                            <%}%>
-                                              
-                        
-                    </ul>
+                    
                 <%} %>
+                <script src="/public/javascript/main.js">            
+                    
+                </script>
             </div>
             
         </div>

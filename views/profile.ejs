@@ -132,125 +132,151 @@
                            <% if(posts.length> 0) {
                               posts.forEach(post => { %>
                               <form id="<%=post._id%>">
-                                 <div class="card gedf-card " id="card_full">
-                                    <div class="card-header">
-                                       <div class="d-flex justify-content-between align-items-center">
+                                  <div class="card gedf-card" id="card_full">
+                                      <div class="card-header">
                                           <div class="d-flex justify-content-between align-items-center">
-                                             <div class="mr-2">
-                                                <img class="rounded-circle" src="/public/image/avatar/<%=post.avatar%>"
-                                                   alt="">
-                                             </div>
-                                             <div class="ml-2">
-                                                <div class="h5 m-0"><a href="/profile/<%=post.username%>">
-                                                      <%=post.fullname%>
-                                                   </a>
-                                                </div>
-                                                <div class="h7 text-muted">Phòng/khoa</div>
-                                             </div>
-                                          </div>
-                                          <%if(userSession.name==post.username) {%>
-                                             <div>
-                                                 <div class="dropdown">
-                                                     <button class="btn btn-link dropdown-toggle" type="button"
-                                                         id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true"
-                                                         aria-expanded="false">
-                                                         <i class="fa fa-ellipsis-h"></i>
-                                                     </button>
+                                              <div class="d-flex justify-content-between align-items-center">
+                                                  <div class="mr-2">
+                                                      <img class="rounded-circle" src="/public/image/avatar/<%=post.avatar%>"
+                                                          alt="">
+                                                  </div>
+                                                  <div class="ml-2">
+                                                      <div class="h5 m-0"><a href="/profile/<%=post.username%>">
+                                                              <%=post.fullname%>
+                                                          </a>
+                                                      </div>
+                                                          <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o">
+                                                              <%=post.date.day%>/<%=post.date.month%>/<%=post.date.year%>
+                                                              <%=post.date.time_hours%>:<%=post.date.time_minutes%>
+                                                              </i>
+                                                          </div>
                                                      
-                                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">                                                   
-                                                             <a class="dropdown-item" href="/deletepost/<%=post._id%>"><i class="fas fa-trash"></i> Xóa</a>
-                                                             <a class="dropdown-item" href="/editpost/<%=post._id%>"><i class="fas fa-cog"></i> Chỉnh sửa</a>                                                                                             
-                                                     </div>
-                                                     
-                                                 </div>
-                                             </div>
-                                             <%}%>
-                                       </div>
-
-                                    </div>
-                                    <div class="card-body">
-                                       <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o">
-                                          <%=post.date.day%>/<%=post.date.month%>/<%=post.date.year%>
-                                          <%=post.date.time_hours%>:<%=post.date.time_minutes%>
-                                          </i>
-                                       </div>
-                                       <a class="card-link" id="descPost" href="/post/<%= post._id %>">
-                                          <h5>[Thông báo] <%=post.title%>
-                                          </h5>
-                                          <p class="card-text">
-                                             <%=post.description%>
-                                          </p>
-                                          <% if(post.image!="" ) { %>
-                                             <img src="/public/image/<%= post.image %>">
-                                             <% } %>
-                                       </a>
-
-                                       <br>
-
-                                       <div class="timeline-likes">
-                                          <div class="stats-right">
-                                             <% if(post.comment.length>0){ %>
-                                                <span class="stats-text" id="commentcount">
-                                                   <%=post.comment.length%> bình luận
-                                                </span>
-                                                <% }else{ %>
-                                                   <span class="stats-text" id="commentcount"></span>
-                                                   <%} %>
+                                                  </div>
+                                              </div>
+                                              <%if(userSession.name==post.username) {%>
+                                              <div>
+                                                  <div class="dropdown">
+                                                      <button class="btn btn-link dropdown-toggle" type="button"
+                                                          id="drop-edit-delete" data-toggle="dropdown" aria-haspopup="true"
+                                                          aria-expanded="false">
+                                                          <i class="fa fa-ellipsis-h"></i>
+                                                      </button>
+                                                      
+                                                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="drop-edit-delete">                                                   
+                                                              <a class="dropdown-item" href="/deletepost/<%=post._id%>"><i class="fas fa-trash"></i> Xóa</a>
+                                                              <a class="dropdown-item" href="/editpost/<%=post._id%>"><i class="fas fa-cog"></i> Chỉnh sửa</a>                                                                                             
+                                                      </div>
+                                                      
+                                                  </div>
+                                              </div>
+                                              <%}%>
                                           </div>
-                                          <div class="stats">
-                                             <span class="fa-stack fa-fw stats-icon">
-                                                <i class="fas fa-thumbs-up text-primary"></i>
-                                             </span>
-                                             <span class="stats-text" id="likeCount-<%=post._id%>">
-                                                <%=post.like.length%> lượt thích
-                                             </span>
+      
+                                      </div>
+                                      <div class="card-body">
+                                          
+                                          <a class="card-link" id="descPost" href="/post/<%= post._id %>">
+                                              <%if(post.title!=null) {%>
+                                                  <h5><b>[Thông báo] <%=post.title%></b></h5>
+                                              <%}
+                                              else{%>
+                                                  <h5><%=post.title%></h5>
+                                              <%}%>
+                                              
+                                              <p class="card-text">
+      
+                                                  <%=post.description%>
+      
+                                                  <%if(post.description.includes('https')) {
+                                                      const words = post.description.split('/');
+                                                      
+                                                      if(words[3].includes('watch?v=')) {
+                                                          words2 = words[3].split('watch?v=');%>
+                                                          <div class="embed-responsive embed-responsive-16by9">                      
+                                                          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<%=words2[1]%>" allowfullscreen>
+                                                          </iframe>
+                                                          </div>
+                                                      <%}else{%>
+                                                         <div class="embed-responsive embed-responsive-16by9"> 
+                                                          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<%=words[3]%>" allowfullscreen>
+                                                          </iframe>
+                                                         </div> 
+                                                      <%}
+                                                      
+                                                      
+                                                      
+                                              }%>
+                                                  
+      
+                                              </p>
+                                              <% if(post.image!="" ) { 
+                                                  if(post.image.includes('mp4')) {%>
+                                                      <video controls  >
+                                                          <source src="/public/image/<%=post.image%>" >
+                                                      </video>
+                                                  <%}
+                                                  else {%>
+                                                      <img src="/public/image/<%= post.image %>">
+                                                  <%}
+                                                  
+                                              } %>
+                                          </a>
+      
+                                          <br>
+      
+                                          <div class="Interactive">
+                                              <div class="Interactive-comment">
+                                                  <% if(post.comment.length>0){ %>
+                                                      <span class="stats-text" id="commentcount">
+                                                          <%=post.comment.length%> bình luận
+                                                      </span>
+                                                      <% }else{ %>
+                                                          <span class="stats-text" id="commentcount"></span>
+                                                          <%} %>
+                                              </div>
+                                              <div class="stats">
+                                                  <span class="fa-stack fa-fw Interactive-like">
+                                                      <i class="fas fa-thumbs-up text-primary"></i>
+                                                  </span>
+                                                  <span class="stats-text" id="likeCount-<%=post._id%>">
+                                                      <%=post.like.length%> lượt thích
+                                                  </span>
+                                              </div>
+      
+                                              
+      
                                           </div>
-                                       </div>
-
-                                    </div>
-                                    <div class="card-footer">
-                                       <div class="row">
-                                          <div class="col-sm-3 text-right">
-                                             <label for="like-<%=post._id%>">
-                                                <% if(post.like.includes(userSession.name)==true){ %>
-                                                   <i class="far fa-thumbs-up text-primary" id="Like-<%=post._id%>"
-                                                      class="card-link"> Thích</i>
-
-                                                   <% }else{ %>
-                                                      <i class="far fa-thumbs-up" id="Like-<%=post._id%>"> Thích</i>
-                                                      <% } %>
-                                             </label>
-                                             <button id="like-<%=post._id%>" class="like_count" style="display: none;"
-                                                type="button"></button>
+      
+                                      </div>
+                                      <div class="card-footer">
+                                          <div class="row">
+                                              <div class="col-sm-3 text-right">
+                                                  <label for="like-<%=post._id%>">
+                                                      <% if(post.like.includes(userSession.name)==true){ %>
+                                                          <a href="/post/<%=post._id%>" class="card-link"></a>
+                                                          <i class="far fa-thumbs-up text-primary" id="Like-<%=post._id%>"
+                                                              class="card-link"> Thích</i>
+                                                          </a>
+      
+                                                          <% }else{ %>
+                                                              <a href="/post/<%=post._id%>" class="card-link">
+                                                                  <i class="far fa-thumbs-up" id="Like-<%=post._id%>"> Thích</i>
+                                                              </a>
+                                                              <% } %>
+                                                  </label>
+                                                  <button id="like-<%=post._id%>" class="like_count" style="display: none;"
+                                                      type="button"></button>
+                                              </div>
+                                              
+                                              <div class="col-sm-6 text-right">
+                                                  <a href="/post/<%=post._id%>" class="card-link"><i
+                                                          class="far fa-comment"></i> Bình luận</a>
+                                              </div>
                                           </div>
-                                          <script>
-                                             var count = 0;
-
-                                             document.getElementById("like-<%=post._id%>").addEventListener("click", () => {
-                                                if (document.getElementById("Like-<%=post._id%>").style.color != "blue") {
-                                                   document.getElementById("likeCount-<%=post._id%>").innerHTML = `<%=post.like.length%>`;
-                                                }
-                                                document.getElementById("Like-<%=post._id%>").style.color = "blue";
-                                                socket.emit("like_post", {
-                                                   id: "<%=post._id%>",
-                                                   userSession: "<%=userSession.name%>"
-
-                                                });
-
-                                             })
-                                             socket.on("server_send_likecount_<%=post._id%>", (data) => {
-                                                document.getElementById("likeCount-<%=post._id%>").innerHTML = `${data.likecount}`;
-                                             })
-                                          </script>
-                                          <div class="col-sm-6 text-right">
-                                             <a href="/post/<%=post._id%>" class="card-link"><i
-                                                     class="far fa-comment"></i> Bình luận</a>
-                                         </div>
-                                       </div>
-                                    </div>
-                                 </div>
+                                      </div>
+                                  </div>
                               </form>
-
+      
                               <% }); 
                            } 
                            else{%>
