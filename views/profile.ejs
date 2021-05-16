@@ -17,31 +17,7 @@
          <div class="row">
             <div class="col-md-12">
                <div id="content" class="content content-full-width">
-                  <div class="profile text-center">
-                        <div class="profile-img">
-                           <img class="rounded-circle " src="/public/image/avatar/<%=userProfile.avatar%>">
-                        </div>
-                     <div class="name">
-                        <h3 class="m-t-10 m-b-5">
-                           <%=userProfile.fullname%>
-                        </h3>
-                        <% if(userProfile.role=='1' ) {%>
-                           <p class="m-b-10">
-                              Admin
-                           </p>
-                           <% }%>
-                        <% if(userProfile.role=='2' ) {%>
-                           <p class="m-b-10">
-                              Phòng/khoa
-                           </p>
-                        <% }%>
-                        <% if(userProfile.role=='3' ) {%>
-                           <p class="m-b-10">
-                              Sinh viên
-                           </p>
-                        <% }%>
-                     </div>
-                  </div>
+                  
                   <hr></hr>
                   
                   <div class="container-fluid gedf-wrapper">
@@ -50,8 +26,11 @@
                         <%if(userSession.name==userProfile.name) {%>
                            <div class="col-md-4">
                               <div class="card border border-primary" id="left-creen">
-                                 <div class="card-body">
-                                    <h4>Thông tin tài khoản</h4>
+                                 <div class="card-body text-center">
+                                    <h3>Thông tin tài khoản</h3>
+                                    <div class="profile-img">
+                                       <img class="rounded-circle " src="/public/image/avatar/<%=userProfile.avatar%>">
+                                    </div>
                                     <div class="h5">
                                        <%=userSession.fullname%>
                                     </div>
@@ -250,7 +229,7 @@
                                       </div>
                                       <div class="card-footer">
                                           <div class="row">
-                                              <div class="col-sm-3 text-right">
+                                              <div class="col-sm-6 text-left">
                                                   <label for="like-<%=post._id%>">
                                                       <% if(post.like.includes(userSession.name)==true){ %>
                                                           <a href="/post/<%=post._id%>" class="card-link"></a>

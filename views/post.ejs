@@ -15,6 +15,7 @@
 <body>
     <%- include('navbar') -%>
     <div class="container-fluid gedf-wrapper">
+        <hr></hr>
         <div class="row">
             <div class="col-md-3">
             </div>
@@ -130,7 +131,7 @@
                     </div>
                     <div class="card-footer">
                         <div class="row">
-                            <div class="col-sm-3 text-right" >
+                            <div class="col-sm-6 text-left" >
                                 <label for="like-<%=post._id%>">
                                     <% if(post.like.includes(userSession.name)==true){ %>
                                         <i class="far fa-thumbs-up text-primary" id="Like-<%=post._id%>"> Thích</i>
